@@ -1,1 +1,4 @@
 com\doxbit\dataTransfer\App.class
+com\doxbit\dataTransfer\Serializator.class
+com\doxbit\dataTransfer\DBDataEntity.class
+com\doxbit\dataTransfer\SampleObject.class
