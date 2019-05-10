@@ -27,7 +27,7 @@ public class HubToDbRestController {
 //	}
 	 
 
-	@PutMapping("/Doc/{id}")
+	@GetMapping ("/Doc/{id}")
 	DocToMigrate replaceEmployee(@RequestBody DocToMigrate newDoc, @PathVariable Long id) {
 
 		return repository.findById(id)
