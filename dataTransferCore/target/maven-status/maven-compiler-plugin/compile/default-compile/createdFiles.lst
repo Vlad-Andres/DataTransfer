@@ -1,1 +1,9 @@
 com\doxbit\dataTransfer\App.class
+com\doxbit\dataTransfer\interfaces\Reader.class
+com\doxbit\dataTransfer\DocToMigrate.class
+com\doxbit\dataTransfer\DocumentsRepository.class
+com\doxbit\dataTransfer\DocRepImplement.class
+com\doxbit\dataTransfer\SampleObject.class
+com\doxbit\dataTransfer\interfaces\Writer.class
+com\doxbit\dataTransfer\Serializator.class
+com\doxbit\dataTransfer\interfaces\GeneralHub.class
