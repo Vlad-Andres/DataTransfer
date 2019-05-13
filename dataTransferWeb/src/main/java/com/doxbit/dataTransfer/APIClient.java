@@ -1,84 +1,58 @@
 package com.doxbit.dataTransfer;
 
-import org.springframework.web.client.RestTemplate;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class APIClient {
+    public class APIClient {
 
-    public static final String REST_SERVICE_URI = "http://localhost:8080/Spring4MVCCRUDRestService";
+        public static void main(String[] args) {
 
+            try {
 
-//    /* GET */
-//    @SuppressWarnings("unchecked")
-//    private static void listAllUsers(){
-//        System.out.println("Testing listAllUsers API-----------");
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        List<LinkedHashMap<String, Object>> usersMap = restTemplate.getForObject(REST_SERVICE_URI+"/user/", List.class);
-//
-//        if(usersMap!=null){
-//            for(LinkedHashMap<String, Object> map : usersMap){
-//                System.out.println("User : id="+map.get("id")+", Name="+map.get("name")+", Age="+map.get("age")+", Salary="+map.get("salary"));;
-//            }
-//        }else{
-//            System.out.println("No user exist----------");
-//        }
-//    }
-//
-//    /* GET */
-    private static void requestDocument(long doc_id){
-        System.out.println("Testing getUser API----------");
-        RestTemplate restTemplate = new RestTemplate();
+                URL url = new URL("http://localhost:8080/dataTransferWeb/Doc");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
 
-        //URI uri= restTemplate.postForLocation(REST_SERVICE_URI+"/Doc/"+doc_id, , User.class);
+                String input = "{\"id\":12}";
+
+                OutputStream os = conn.getOutputStream();
+                os.write(input.getBytes());
+                os.flush();
+
+                if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                    throw new RuntimeException("Failed : HTTP error code : "
+                            + conn.getResponseCode());
+                }
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        (conn.getInputStream())));
+
+                String output;
+                System.out.println("Output from Server .... \n");
+                while ((output = br.readLine()) != null) {
+                    System.out.println(output);
+                }
+
+                conn.disconnect();
+
+            } catch (MalformedURLException e) {
+
+                e.printStackTrace();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+
+        }
 
     }
-//    private static void getUser(){
-//        System.out.println("Testing getUser API----------");
-//        RestTemplate restTemplate = new RestTemplate();
-// \\\       User user = restTemplate.getForObject(REST_SERVICE_URI+"/user/1", User.class);
-//        System.out.println(user);
-//    }
-//
-//    /* POST */
-//    private static void createUser() {
-//        System.out.println("Testing create User API----------");
-//        RestTemplate restTemplate = new RestTemplate();
-//        User user = new User(0,"Sarah",51,134);
-//        URI uri = restTemplate.postForLocation(REST_SERVICE_URI+"/user/", user, User.class);
-//        System.out.println("Location : "+uri.toASCIIString());
-//    }
-//
-//    /* PUT */
-//    private static void updateUser() {
-//        System.out.println("Testing update User API----------");
-//        RestTemplate restTemplate = new RestTemplate();
-//        User user  = new User(1,"Tomy",33, 70000);
-//        restTemplate.put(REST_SERVICE_URI+"/user/1", user);
-//        System.out.println(user);
-//    }
-//
-//    /* DELETE */
-//    private static void deleteUser() {
-//        System.out.println("Testing delete User API----------");
-//        RestTemplate restTemplate = new RestTemplate();
-//        restTemplate.delete(REST_SERVICE_URI+"/user/3");
-//    }
-//
-//
-//    /* DELETE */
-//    private static void deleteAllUsers() {
-//        System.out.println("Testing all delete Users API----------");
-//        RestTemplate restTemplate = new RestTemplate();
-//        restTemplate.delete(REST_SERVICE_URI+"/user/");
-//    }
 
-    public static void main(String args[]){
-       // listAllUsers();
-//        getUser();
-    }
-}
