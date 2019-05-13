@@ -13,16 +13,16 @@ public class HubToDbRestController {
 	@Autowired
 	DocumentsRepository repository;
 
-	@GetMapping("/Doc")
-	public void helloWorld(
-			@RequestParam(value = "Id", required = true, defaultValue = "null") String docId )
-	{
-
-		System.out.println("[MESSAGE FROM HubToDbRestController]");
-		HubInstance hubInstance = new HubInstance();
-		hubInstance.register(Long.parseLong(docId));
-		System.out.println("Doc Id sent to hub");
-	}
+//	@GetMapping("/Doc")
+//	public void helloWorld(
+//			@RequestParam(value = "Id", required = true, defaultValue = "null") String docId )
+//	{
+//
+//		System.out.println("[MESSAGE FROM HubToDbRestController]");
+//		HubInstance hubInstance = new HubInstance();
+//		hubInstance.register(Long.parseLong(docId));
+//		System.out.println("Doc Id sent to hub");
+//	}
 //	@GetMapping("/testDoc")
 //	List<DocToMigrate> all(){
 //			@EnableSwagger2
@@ -33,20 +33,26 @@ public class HubToDbRestController {
 //		return repository.findById(id)
 //			.orElseThrow(() -> new EmployeeNotFoundException(id));
 //	}
-	 
-
-	@GetMapping ("/Doc/{id}")
-	DocToMigrate replaceEmployee(@RequestBody DocToMigrate newDoc, @PathVariable Long id) {
-
-		return repository.findById(id)
-			.map(doc -> {
-				doc.setTitle(newDoc.getTitle());
-				doc.setAuthor(newDoc.getAuthor());
-				return repository.save(doc);
-			})
-			.orElseGet(() -> {
-				newDoc.setId(id);
-				return repository.save(newDoc);
-			});
+	@GetMapping("/Doc/{id}")
+	private void handleRequest(@PathVariable Long id){
+		System.out.println("[MESSAGE FROM HubToDbRestController]");
+		HubInstance hubInstance = new HubInstance();
+		hubInstance.register(id);
+		System.out.println("Doc Id sent to hub");
 	}
+
+//	@GetMapping ("/Doc/{id2}")
+//	DocToMigrate replaceEmployee(@RequestBody DocToMigrate newDoc, @PathVariable Long id) {
+//
+//		return repository.findById(id)
+//			.map(doc -> {
+//				doc.setTitle(newDoc.getTitle());
+//				doc.setAuthor(newDoc.getAuthor());
+//				return repository.save(doc);
+//			})
+//			.orElseGet(() -> {
+//				newDoc.setId(id);
+//				return repository.save(newDoc);
+//			});
+//	}
 }
