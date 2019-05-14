@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HubToDbRestController {
 
 	@Autowired
-	DocumentsRepository repository;
+	MigrationHubReppository repository;
 	
 	
 //	@GetMapping("/testDoc")

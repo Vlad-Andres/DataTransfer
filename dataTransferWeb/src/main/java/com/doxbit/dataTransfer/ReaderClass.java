@@ -9,12 +9,12 @@ import org.springframework.web.client.RestTemplate;
 
 //import com.websystique.springmvc.model.User;
 
-public class ReaderClass implements Reader {
+public class ReaderClass  { //implements Reader
 
     public static final String REST_SERVICE_URI = "http://localhost:8080/Spring4MVCCRUDRestService";
 
 
-    public void Read(Long docId)
+    public void Read(long docId)
 
     {
         // TODO Auto-generated method stub
