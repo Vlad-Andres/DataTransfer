@@ -40,10 +40,10 @@ public class HubImplement implements GeneralHub {
         Iterable<MigrationLogs> all = hubReppository.findAll();
 
         System.out.println("Migration log saved! - ");
-//        for(MigrationLogs s : all){
-//            //Do whatever you
-//           System.out.println("DASDSA"+s.getAuthor().toString());
-//        }
+        for(MigrationLogs s : all){
+            //Do whatever you
+           System.out.println("DASDSA"+s.getAuthor().toString());
+        }
         return String.valueOf(docId);
     }
 

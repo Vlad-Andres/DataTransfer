@@ -1,3 +1,4 @@
+com\doxbit\dataTransfer\PersistenceJPAConfig.class
 com\doxbit\dataTransfer\interfaces\Reader.class
 com\doxbit\dataTransfer\DocToMigrate.class
 com\doxbit\dataTransfer\DocRepImplement.class
