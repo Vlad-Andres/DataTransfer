@@ -1,4 +1,4 @@
-package com.doxbit.dataTransfer;
+package com.doxbit.dataTransfer.model;
 
 import java.util.Date;
 
@@ -13,8 +13,8 @@ import lombok.Data;
 public class DocToMigrate {
 	
 	private @Id @GeneratedValue Long id;
-	private String Title;
-	private String Author;
+	private String title;
+	private String author;
 	private Date lastMigrationDate;	
 	
 	public Long getId() {
@@ -26,19 +26,19 @@ public class DocToMigrate {
 	}
 
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
 
 	public String getAuthor() {
-		return Author;
+		return author;
 	}
 
 	public void setAuthor(String author) {
-		Author = author;
+		this.author = author;
 	}
 
 	public Date getLastMigrationDate() {
@@ -54,8 +54,8 @@ public class DocToMigrate {
 	public DocToMigrate(Long id, String title, String author, Date lastMigrationDate) {
 		//super();
 		this.id = id;
-		Title = title;
-		Author = author;
+		this.title = title;
+		this.author = author;
 		this.lastMigrationDate = lastMigrationDate;
 	}
 }

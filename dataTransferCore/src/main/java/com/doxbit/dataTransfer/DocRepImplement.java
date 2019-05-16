@@ -3,6 +3,8 @@ package com.doxbit.dataTransfer;
 import java.util.List;
 import java.util.Optional;
 
+import com.doxbit.dataTransfer.dao.DocumentsRepository;
+import com.doxbit.dataTransfer.model.DocToMigrate;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

@@ -1,20 +1,26 @@
-package com.doxbit.dataTransfer;
+package com.doxbit.dataTransfer.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import lombok.Data;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-@Data
+//@Data
 @Entity
-public class MigrationLogs {
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class MigrationLogs implements Serializable {
 
     private @Id @GeneratedValue Long id;
-    private String Title;
-    private String Author;
+    private String title;
+    private String author;
     private Date lastMigrationDate;
 
     public Long getId() {
@@ -26,19 +32,19 @@ public class MigrationLogs {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        title = title;
     }
 
     public String getAuthor() {
-        return Author;
+        return author;
     }
 
     public void setAuthor(String author) {
-        Author = author;
+        author = author;
     }
 
     public Date getLastMigrationDate() {
@@ -51,11 +57,11 @@ public class MigrationLogs {
 
 
 
-//    public MigrationLogs(Long id, String title, String author, Date lastMigrationDate) {
-//        //super();
-//        this.id = id;
-//        Title = title;
-//        Author = author;
-//        this.lastMigrationDate = lastMigrationDate;
-//    }
+    public MigrationLogs(Long id, String title, String author, Date lastMigrationDate) {
+        //super();
+        this.id = id;
+        title = title;
+        author = author;
+        this.lastMigrationDate = lastMigrationDate;
+    }
 }
